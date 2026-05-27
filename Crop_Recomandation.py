@@ -4,7 +4,6 @@ import streamlit as st
 import warnings as wr
 wr.filterwarnings('ignore')
 
-
 # Sklearn Tools
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -14,7 +13,6 @@ from sklearn.ensemble import RandomForestClassifier
 
 ### Load Dataset
 CropName = pd.read_csv("Crop_Recomand.csv")
-
 
 ### Encoding 
 Encoder = LabelEncoder()
@@ -53,26 +51,18 @@ def Predict_crop(N, P, K, temp, humd, ph, rain):
 
     return Prediction[0]
 
-
 ### UI Layout New
 st.title('🌽 Crop Recomandation System')
 
 st.markdown('### Please Enter The Details Values')
 
-col11, col22, col33 = st.columns(3)
-
-with col11:
-    N = st.number_input('Nitrogen (N)', min_value=0.0, value=50.0)
-    temp = st.number_input('Temperature (C)', min_value=10.0, value=25.0)
-    ph = st.number_input('Soil pH', min_value=0.0, max_value=14.0, value=6.5)
-
-with col22:
-    P = st.number_input('Phosphorous (P)', min_value=0.0, value=50.0)
-    humd = st.number_input('Humidity (%)', min_value=0.0, value=80.0)
-
-with col33:
-    K = st.number_input('Potassium (K)', min_value=0.0, value=50.0)
-    rain = st.number_input('Railfall (mm)', min_value=0.0, value=100.0)
+N = st.number_input('Nitrogen (N)', min_value=0.0, value=50.0)
+P = st.number_input('Phosphorous (P)', min_value=0.0, value=50.0)
+K = st.number_input('Potassium (K)', min_value=0.0, value=50.0)
+temp = st.number_input('Temperature (C)', min_value=10.0, value=25.0)
+humd = st.number_input('Humidity (%)', min_value=0.0, value=80.0)
+ph = st.number_input('Soil pH', min_value=0.0, max_value=14.0, value=6.5)
+rain = st.number_input('Railfall (mm)', min_value=0.0, value=100.0)
 
 # Predict Button
 if st.button('Recomanded'):
